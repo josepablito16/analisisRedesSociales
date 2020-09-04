@@ -1,6 +1,7 @@
 import tweepy
 import os
 from dotenv import load_dotenv
+import csv
 load_dotenv()
 #http://docs.tweepy.org/en/v3.5.0/api.html#API.search
 #https://www.earthdatascience.org/courses/use-data-open-source-python/intro-to-apis/twitter-data-in-python/
@@ -27,15 +28,11 @@ date_since="2020-1-1"
 # Calling the user_timeline function with our parameters
 #results = api.search(api.search,q=query,lang=language,since=date_since)
 
-
-for page in tweepy.Cursor(api.search,q=query,lang=language,since=date_since,count=200).pages(4):
-	for status in page:
-		status2 = api.get_status(status._json['id'], tweet_mode = "extended") 
-	
-		print(status._json['id'])
-		print(status2.full_text)
-		print(status._json['created_at'])
-
-		break
-	break
-
+with open('files/test.csv', 'w', newline='',encoding="utf8") as file:
+	writer = csv.writer(file)
+	writer.writerow(["id", "date", "text"])
+	for page in tweepy.Cursor(api.search,q=query,lang=language,since=date_since,count=200).pages(4):
+		for status in page:
+			status2 = api.get_status(status._json['id'], tweet_mode = "extended")
+			writer.writerow([status._json['id'],status._json['created_at'],str(status2.full_text)])		
+			
