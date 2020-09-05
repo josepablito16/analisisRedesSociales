@@ -45,7 +45,6 @@ search_params = {
     'lang': 'es',
     'tweet_mode': 'extended',
     'count': 2,
-    'until': '2020-09-01'
 }
 
 search_url = '{}1.1/search/tweets.json'.format(base_url)
