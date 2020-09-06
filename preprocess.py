@@ -3,6 +3,7 @@
 # A continuación, se hará una limpieza del archivo .csv generado por el script *test.py*
 
 # Librerías a utilizar:
+# %%
 import pandas as pd
 import datetime
 import re
@@ -22,10 +23,10 @@ data_mensual = [enero, febrero, marzo, abril, mayo, junio, julio, agosto]
 meses = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto']
 
 cont = 0
-
+# %%
 # Recorrer cada csv mensual
 for mes in data_mensual:
-
+  
     # Creamos copia de la data con las columnas importantes
     clean_mes = mes[['text', 'hashtags', 'timestamp', 'username']].copy()
 
@@ -73,7 +74,7 @@ for mes in data_mensual:
     # Reemplazar los tweets sucios por los limpios
     clean_mes['text'] = clean_tweets
     # Crear dataframe del mes
-    df = pd.DataFrame(clean_df)
+    df = pd.DataFrame(clean_mes)
     # Crear CSV con el nombre del mes
     csv_name = f'./files/clean_{meses[cont]}.csv'
     df.to_csv(csv_name, index=False)
