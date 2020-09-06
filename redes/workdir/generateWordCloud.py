@@ -1,17 +1,16 @@
 #import matplotlib.pyplot as plt
-#from wordcloud import WordCloud, STOPWORDS
+from wordcloud import WordCloud, STOPWORDS
 
 def generateWordCloud(texts):    
     comment_words = ''
-    stopwords = ['a', 'aca', 'ahi', 'ajena', 'ajeno', 'ajenas','ajenos', 'al', 'algo', 
-    'alguna', 'alguno', 'algunos', 'algunas', 'alla' , , 'alli', 'ambos', 'ante', 'antes', 'aquel', 'aquella', 'aquello','aquellas','aquellos',    
+    stopwords = ['a', 'aca', 'ahi', 'ajena', 'ajeno', 'ajenas','ajenos', 'al', 'algo', 'alguna', 'alguno', 'algunos', 'algunas', 'alla' , 'alli', 'ambos', 'ante', 'antes', 'aquel', 'aquella', 'aquello','aquellas','aquellos',    
     'aqui', 'arriba', 'asi', 'atras', 'aun', 'aunque', 'bajo', 'bastante', 'bien', 'cabe', 'cada', 'casi', 'cierta', 'cierto', 'ciertas'
     'ciertos', 'como', 'con', 'conmigo', 'conseguimos', 'conseguir', 'consigo', 'consigue', 'consiguen', 'consigues', 'contigo', 'contra', 
     'cual', 'cuales', 'cualquier', 'cualquiera', 'cualquieras', 'cuan', 'cuando', 'cuanto', 'cuantos', 'cuantas', 'cuanta', 'de', 'dejar', 
     'del', 'demas', 'demasiada', 'demasiadas', 'demasiados', 'demasiado' , 'dentro', 'desde', 'donde', 
     'dos', 'el', 'el', 'ella', 'ellas', 'ellos', 'ello', 'empleais', 'emplean', 'emplear', 'empleas', 'empleo', 'en', 'encima', 'entonces', 'entre', 
     'era', 'eras', 'eramos', 'eran', 'eres', 'es', 'esa', 'ese', 'eso', 'esas', 'esos', 'estas', 'esta','estaba', 'estado', 'estais'
-    , 'estamos', 'estan', 'estar', 
+    , 'estamos', 'estan', 'estar', 'twitter', 
     'este', 'estos', 'esto', 'estoy', 'etc', 'fin', 'fue', 'fueron', 'fui', 'fuimos', 'gueno', 'ha', 'hace', 'haces', 'haceis', 'hacemos', 'hacen', 
     'hacer', 'hacia', 'hago', 'hasta', 'incluso', 'intenta', 'intentas', 'intentais', 'intentamos', 'intentan', 'intentar', 'intento', 'ir', 
     'jamas', 'juntos', 'junto','lo', 'la', 'los','las' 'largo', 'mas', 'me', 'menos', 'mi','mis', 'mia', 'mias', 'mientras', 'mio', 'mios',
@@ -36,6 +35,8 @@ def generateWordCloud(texts):
                 background_color ='white', 
                 stopwords = stopwords, 
                 min_font_size = 10).generate(comment_words)
+
+    return wordcloud
 
 """ add to generate graph
     plt.figure(figsize = (8, 8), facecolor = None) 
