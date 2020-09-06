@@ -17,61 +17,65 @@ junio = pd.read_csv('./junio.csv')
 julio = pd.read_csv('./julio.csv')
 agosto = pd.read_csv('./agosto.csv')
 
-# Crear variable con toda la data junta
-data = pd.concat([enero, febrero, marzo, abril, mayo, junio, julio, agosto])
+# Crear arreglo de datos con cada mes 
+data_mensual = [enero, febrero, marzo, abril, mayo, junio, julio, agosto]
+meses = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto']
 
-# Crear copia del documento, usando solo las columnas útiles
-clean_df = data[['text', 'hashtags', 'timestamp', 'username']].copy()
+cont = 0
 
+# Recorrer cada csv mensual
+for mes in data_mensual:
 
-# LIMPIEZA DE CADA TEXTO EN LOS TWEETS
+    # Creamos copia de la data con las columnas importantes
+    clean_mes = mes[['text', 'hashtags', 'timestamp', 'username']].copy()
 
-# Creamos arreglo de tweets
-clean_tweets = []
+    clean_tweets = []
 
-# Recorremos cada tweet individualmente
-for line in clean_df['text']:
-    # Quitar caracteres en hex
-    line = line.replace(u'\xa0', u' ')
-    # Convertir el texto a minúsculas
-    line = str(line.lower())
+    # Recorremos tweet por tweet
+    for line in clean_mes['text']:
+        # Quitar caracteres en hex
+        line = line.replace(u'\xa0', u' ')
+        # Convertir el texto a minúsculas
+        line = str(line.lower())
 
-    # Quitar menciones
-    line = re.sub('@[^\s]+','', line)
-    # Quitar Hastags
-    line = re.sub('#[^\s]+', '', line)
+        # Quitar menciones
+        line = re.sub('@[^\s]+','', line)
+        # Quitar Hastags
+        line = re.sub('#[^\s]+', '', line)
 
-    # Quitar control de texto
-    regex = re.compile(r'[\n\r\t]')
-    line = regex.sub(' ', line)
+        # Quitar control de texto
+        regex = re.compile(r'[\n\r\t]')
+        line = regex.sub(' ', line)
 
-    # Quitar URLS
-    line = re.sub(r'http\S+', '', line)
-    line = re.sub(r'pic\S+', '', line)
+        # Quitar URLS
+        line = re.sub(r'http\S+', '', line)
+        line = re.sub(r'pic\S+', '', line)
 
-    # Quitar espacios de más
-    line = re.sub(' +', ' ', line)
+        # Quitar espacios de más
+        line = re.sub(' +', ' ', line)
 
-    # Quitar el resto de expresiones regulares, excepto . ? ! y '
-    line = re.sub(r"[^\w.?!\d'\s]", '', line)
+        # Quitar el resto de expresiones regulares, excepto . ? ! y '
+        line = re.sub(r"[^\w.?!\d'\s]", '', line)
 
-    # # Quitar números
-    line = re.sub(' \d+', ' ', line)
-    # # Quitar espacios extra
-    line = line.strip(' \t\n\r')
-    # # Reemplazar ! y ? por puntos.
-    line = line.replace('!','.').replace('?','.')
-    # # Quitar multiples puntos por solo uno
-    line = re.sub(r'\.+', ".", line)
-    # # Finalmente, quitamos apostrofes
-    line = line.replace("'", '')
+        # # Quitar números
+        line = re.sub(' \d+', ' ', line)
+        # # Quitar espacios extra
+        line = line.strip(' \t\n\r')
+        # # Reemplazar ! y ? por puntos.
+        line = line.replace('!','.').replace('?','.')
+        # # Quitar multiples puntos por solo uno
+        line = re.sub(r'\.+', ".", line)
+        # # Finalmente, quitamos apostrofes
+        line = line.replace("'", '')
 
-    clean_tweets.append(line)
+        clean_tweets.append(line)
 
-# CREAR CSV CON TWEETS LIMPIOS
-# Primero, se cambian las columnas por aquellas que esten limpias.
-clean_df['text'] = clean_tweets
+    # Reemplazar los tweets sucios por los limpios
+    clean_mes['text'] = clean_tweets
+    # Crear dataframe del mes
+    df = pd.DataFrame(clean_df)
+    # Crear CSV con el nombre del mes
+    csv_name = f'./files/clean_{meses[cont]}.csv'
+    df.to_csv(csv_name, index=False)
 
-# Luego, crear CSV limpio
-df = pd.DataFrame(clean_df)
-df.to_csv('./files/CleanData.csv', index=False)
+    cont = cont + 1
