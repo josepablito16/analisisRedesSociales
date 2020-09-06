@@ -10,7 +10,7 @@ def generateWordCloud(texts):
     'del', 'demas', 'demasiada', 'demasiadas', 'demasiados', 'demasiado' , 'dentro', 'desde', 'donde', 
     'dos', 'el', 'el', 'ella', 'ellas', 'ellos', 'ello', 'empleais', 'emplean', 'emplear', 'empleas', 'empleo', 'en', 'encima', 'entonces', 'entre', 
     'era', 'eras', 'eramos', 'eran', 'eres', 'es', 'esa', 'ese', 'eso', 'esas', 'esos', 'estas', 'esta','estaba', 'estado', 'estais'
-    , 'estamos', 'estan', 'estar', 'twitter', 
+    , 'estamos', 'estan', 'estar', 'twitter', 'google','chrome',
     'este', 'estos', 'esto', 'estoy', 'etc', 'fin', 'fue', 'fueron', 'fui', 'fuimos', 'gueno', 'ha', 'hace', 'haces', 'haceis', 'hacemos', 'hacen', 
     'hacer', 'hacia', 'hago', 'hasta', 'incluso', 'intenta', 'intentas', 'intentais', 'intentamos', 'intentan', 'intentar', 'intento', 'ir', 
     'jamas', 'juntos', 'junto','lo', 'la', 'los','las' 'largo', 'mas', 'me', 'menos', 'mi','mis', 'mia', 'mias', 'mientras', 'mio', 'mios',
