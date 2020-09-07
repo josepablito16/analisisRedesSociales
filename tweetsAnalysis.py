@@ -1,3 +1,9 @@
+'''
+    Autores 
+        Jose Cifuentes
+        Paul Belches
+        Oscar Juarez
+'''
 import datetime
 from matplotlib import pyplot as plt
 import pandas as pd

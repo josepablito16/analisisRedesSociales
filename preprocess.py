@@ -1,3 +1,9 @@
+'''
+    Autores 
+        Jose Cifuentes
+        Paul Belches
+        Oscar Juarez
+'''
 # LIMPIEZA DE DATOS
 
 # A continuación, se hará una limpieza del archivo .csv generado por el script *test.py*
